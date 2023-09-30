@@ -22,12 +22,8 @@ final class SptingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        springAnimationView.layer.cornerRadius = 10
-        springAnimationView.layer.shadowOpacity = 0.5
-        springAnimationView.layer.shadowOffset = CGSize(width: 0.0, height: 10.0)
-        springAnimationView.layer.shadowRadius = 10
+        settingStartView()
         updeteTextView()
-
     }
     
     @IBAction func startSpringAnimation(_ sender: SpringButton) {
@@ -41,7 +37,7 @@ final class SptingViewController: UIViewController {
         springAnimationView.curve = animationCurves.shuffled().first?.rawValue ?? "easeIn"
         springAnimationView.force = CGFloat.random(in: 1...2)
         springAnimationView.duration = CGFloat.random(in: 1...2)
-        springAnimationView.delay = CGFloat.random(in: 0.3...1)
+        springAnimationView.delay = CGFloat.random(in: 0.3...0.5)
         springAnimationView.animate()
         
         nextAnimate = animations.shuffled().first
@@ -56,5 +52,12 @@ final class SptingViewController: UIViewController {
         totalText += String(format: "delay = %.2f\n", Double(springAnimationView.delay))
 
         infoTextView.text = totalText
+    }
+    
+    private func settingStartView() {
+        springAnimationView.layer.cornerRadius = 10
+        springAnimationView.layer.shadowOpacity = 0.5
+        springAnimationView.layer.shadowOffset = CGSize(width: 0.0, height: 10.0)
+        springAnimationView.layer.shadowRadius = 10
     }
 }
